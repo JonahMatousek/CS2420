@@ -1,5 +1,7 @@
 package assign04;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -52,7 +54,7 @@ public class AnagramChecker {
 	 */
 	public static boolean areAnagrams(String wordOne, String wordTwo) {
 
-		if (sort(wordOne).compareToIgnoreCase(sort(wordTwo)))
+		if (sort(wordOne).compareToIgnoreCase(sort(wordTwo)) == 0)
 			return true;
 
 		return false;
@@ -66,31 +68,31 @@ public class AnagramChecker {
 	 * Comparator class or lambda expression that you design.
 	 */
 	public static String[] getLargestAnagramGroup(String[] wordList) {
-		insertionSort(wordList,new AnagramComparator()) ;
-		ArrayList<String> largestAnagramGroup = new ArrayList<>(); 
+		insertionSort(wordList, new AnagramComparator());
+		ArrayList<String> largestAnagramGroup = new ArrayList<>();
 		ArrayList<String> currentAnagramGroup = new ArrayList<>();
-		
-		for (int i=0;i<wordList.length;i++) {
-			if(i+1<wordList.length()){
-				if(areAnagrams(wordList[i],wordList[i+1])){
-					if(!currentAnagramGroup.contains(wordList[i])) {
-					currentAnagramGroup.add(wordList[i]);
+
+		for (int i = 0; i < wordList.length; i++) {
+			if (i + 1 < wordList.length) {
+				if (areAnagrams(wordList[i], wordList[i + 1])) {
+					if (!currentAnagramGroup.contains(wordList[i])) {
+						currentAnagramGroup.add(wordList[i]);
 					}
-					if(!currentAnagramGroup.contains(wordList[i+1])){
-					currentAnagramGroup.add(wordList[i+1]);
+					if (!currentAnagramGroup.contains(wordList[i + 1])) {
+						currentAnagramGroup.add(wordList[i + 1]);
 					}
-			
-				}else{
-					if(currentAnagramGroup.size()>largestAnagramGroup.size()){
+
+				} else {
+					if (currentAnagramGroup.size() > largestAnagramGroup.size()) {
 						largestAnagramGroup = currentAnagramGroup;
 					}
 					currentAnagramGroup.clear();
 				}
 			}
-			
+
 		}
 		return (String[]) largestAnagramGroup.toArray();
-		
+
 	}
 
 	/*
@@ -100,15 +102,15 @@ public class AnagramChecker {
 	 * array because there are no anagrams. This method must call your
 	 * getLargestAnagramGroup(String[]) method.
 	 */
-	public static String[] getLargestAnagramGroup(String filename) {
-		ArrayList<String> wordList = new ArrayList<String>;
+	public static String[] getLargestAnagramGroup(String filename) throws FileNotFoundException {
+		ArrayList<String> wordList = new ArrayList<String>();
 		File file = new File(filename);
 		Scanner fs = new Scanner(file);
 		while (fs.hasNextLine())
 			wordList.add(fs.nextLine());
-		String[] wordListInput = wordList.toArray();
-		
-		return getLargestAnagramGroup(wordList);
+		String[] wordListInput = (String[]) wordList.toArray();
+
+		return getLargestAnagramGroup(wordListInput);
 	}
 
 }
