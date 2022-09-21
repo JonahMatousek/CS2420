@@ -3,6 +3,7 @@ package assign04;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -13,8 +14,8 @@ public class AnagramChecker {
 	 */
 	public static String sort(String word) {
 		char[] chars = word.toCharArray();
-		for (int i : chars) {
-			int temp = i--;
+		for (int i = 0; i< chars.length;i++) {
+			int temp = i - 1;
 			char val = chars[i];
 
 			while (temp >= 0 && chars[temp] > val) {
@@ -25,7 +26,7 @@ public class AnagramChecker {
 
 		}
 
-		return chars.toString();
+		return new String(chars);
 
 	}
 
@@ -35,10 +36,10 @@ public class AnagramChecker {
 	 */
 	public static <T> void insertionSort(T[] list, Comparator<? super T> cmp) {
 		for (int i = 0; i < list.length; i++) {
-			int temp = i--;
+			int temp = i - 1;
 			T val = list[i];
 
-			while (temp >= 0 && cmp.compare(list[temp], val) > 0) { // change for cmp
+			while (temp >= 0 && cmp.compare(list[temp], val) < 0) { // change for cmp
 				list[temp + 1] = list[temp];
 				temp--;
 			}
@@ -54,7 +55,7 @@ public class AnagramChecker {
 	 */
 	public static boolean areAnagrams(String wordOne, String wordTwo) {
 
-		if (sort(wordOne).compareToIgnoreCase(sort(wordTwo)) == 0)
+		if (sort(wordOne).compareToIgnoreCase(sort(wordTwo))==0)
 			return true;
 
 		return false;
@@ -68,31 +69,36 @@ public class AnagramChecker {
 	 * Comparator class or lambda expression that you design.
 	 */
 	public static String[] getLargestAnagramGroup(String[] wordList) {
-		insertionSort(wordList, new AnagramComparator());
-		ArrayList<String> largestAnagramGroup = new ArrayList<>();
+		insertionSort(wordList,new AnagramComparator()) ;
+		ArrayList<String> largestAnagramGroup = new ArrayList<>(); 
 		ArrayList<String> currentAnagramGroup = new ArrayList<>();
-
-		for (int i = 0; i < wordList.length; i++) {
-			if (i + 1 < wordList.length) {
-				if (areAnagrams(wordList[i], wordList[i + 1])) {
-					if (!currentAnagramGroup.contains(wordList[i])) {
-						currentAnagramGroup.add(wordList[i]);
+		
+		for (int i=0;i<wordList.length;i++) {
+			if(i+1<wordList.length){
+				if(areAnagrams(wordList[i],wordList[i+1])){
+					if(!currentAnagramGroup.contains(wordList[i])) {
+					currentAnagramGroup.add(wordList[i]);
 					}
-					if (!currentAnagramGroup.contains(wordList[i + 1])) {
-						currentAnagramGroup.add(wordList[i + 1]);
+					if(!currentAnagramGroup.contains(wordList[i+1])){
+					currentAnagramGroup.add(wordList[i+1]);
 					}
-
-				} else {
-					if (currentAnagramGroup.size() > largestAnagramGroup.size()) {
+			
+				}else{
+					System.out.println(currentAnagramGroup.size());
+					System.out.println(largestAnagramGroup.size());
+					if(currentAnagramGroup.size()>=largestAnagramGroup.size()){
 						largestAnagramGroup = currentAnagramGroup;
 					}
 					currentAnagramGroup.clear();
+					System.out.println(largestAnagramGroup.toString());
 				}
 			}
-
+			
 		}
-		return (String[]) largestAnagramGroup.toArray();
-
+		//System.out.println(largestAnagramGroup.toString());
+		String[] out =  largestAnagramGroup.toArray(new String[0]);
+		return  out;
+		
 	}
 
 	/*
@@ -108,8 +114,8 @@ public class AnagramChecker {
 		Scanner fs = new Scanner(file);
 		while (fs.hasNextLine())
 			wordList.add(fs.nextLine());
-		String[] wordListInput = (String[]) wordList.toArray();
-
+		String[] wordListInput = wordList.toArray(new String[0]);
+		
 		return getLargestAnagramGroup(wordListInput);
 	}
 
