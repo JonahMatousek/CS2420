@@ -1,6 +1,8 @@
 package assign04;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class AnagramChecker {
 	/*
@@ -10,20 +12,19 @@ public class AnagramChecker {
 	public static String sort(String word) {
 		char[] chars = word.toCharArray();
 		for (int i : chars) {
-			int temp  = i--;
+			int temp = i--;
 			char val = chars[i];
-			
-			while(temp >= 0 && chars[temp] > val) {
-				chars[temp+1] = chars[temp];
+
+			while (temp >= 0 && chars[temp] > val) {
+				chars[temp + 1] = chars[temp];
 				temp--;
 			}
-			chars[temp+1] = val;
-				
+			chars[temp + 1] = val;
+
 		}
-		
+
 		return chars.toString();
-		
-		
+
 	}
 
 	/*
@@ -31,18 +32,18 @@ public class AnagramChecker {
 	 * input Comparator object.
 	 */
 	public static <T> void insertionSort(T[] list, Comparator<? super T> cmp) {
-		for(int i=0;i<list.length;i++) {
+		for (int i = 0; i < list.length; i++) {
 			int temp = i--;
 			T val = list[i];
-			
-			while(temp >= 0 && cmp.compare(list[temp],val)>0) { //change for cmp
-				list[temp+1] = list[temp];
+
+			while (temp >= 0 && cmp.compare(list[temp], val) > 0) { // change for cmp
+				list[temp + 1] = list[temp];
 				temp--;
 			}
-			list[temp+1] = val;
-			
+			list[temp + 1] = val;
+
 		}
-		
+
 	}
 
 	/*
@@ -50,17 +51,11 @@ public class AnagramChecker {
 	 * otherwise returns false. This method must call your sort(String) method.
 	 */
 	public static boolean areAnagrams(String wordOne, String wordTwo) {
-		if (wordOne.length() != wordTwo.length())
-			return false;
-		//int half = wordOne.length()/2;
-		boolean out = true;
-		for (int i = 0; i<wordOne.length();i++) {
-			if (wordOne.charAt(i)!=wordTwo.charAt(i)) {
-				out = false;
-			}
-		}
-		
-		return out;
+
+		if (sort(wordOne).compareToIgnoreCase(sort(wordTwo)))
+			return true;
+
+		return false;
 	}
 
 	/*
@@ -73,18 +68,27 @@ public class AnagramChecker {
 	public static String[] getLargestAnagramGroup(String[] wordList) {
 		insertionSort(wordList,new AnagramComparator()) ;
 		ArrayList<String> largestAnagramGroup = new ArrayList<>(); 
-			
+		ArrayList<String> currentAnagramGroup = new ArrayList<>();
 		
 		for (int i=0;i<wordList.length;i++) {
+			if(i+1<wordList.length()){
+				if(areAnagrams(wordList[i],wordList[i+1])){
+					if(!currentAnagramGroup.contains(wordList[i])) {
+					currentAnagramGroup.add(wordList[i]);
+					}
+					if(!currentAnagramGroup.contains(wordList[i+1])){
+					currentAnagramGroup.add(wordList[i+1]);
+					}
 			
-			if(areAnagrams(wordList[i],wordList[i+1])){
-				if(!largestAnagramGroup.contains(wordList[i]) || !largestAnagramGroup.contains(wordList[i+1])) {
-				largestAnagramGroup.add(wordList[i]);
-				largestAnagramGroup.add(wordList[i+1]);
+				}else{
+					if(currentAnagramGroup.size()>largestAnagramGroup.size()){
+						largestAnagramGroup = currentAnagramGroup;
+					}
+					currentAnagramGroup.clear();
+				}
 			}
+			
 		}
-		
-	}
 		return (String[]) largestAnagramGroup.toArray();
 		
 	}
@@ -97,7 +101,28 @@ public class AnagramChecker {
 	 * getLargestAnagramGroup(String[]) method.
 	 */
 	public static String[] getLargestAnagramGroup(String filename) {
-		return null;
+		ArrayList<String> wordList = new ArrayList<String>;
+		File file = new File(filename);
+		Scanner fs = new Scanner(file);
+		while (fs.hasNextLine())
+			wordList.add(fs.nextLine());
+		String[] wordListInput = wordList.toArray();
+		
+		return getLargestAnagramGroup(wordList);
+	}
+
+}
+
+class AnagramComparator implements Comparator<String> {
+
+	@Override
+	public int compare(String one, String two) {
+		if (AnagramChecker.sort(one).compareTo(AnagramChecker.sort(two)) > 0) {
+			return 1;
+		} else if (AnagramChecker.sort(one).compareTo(AnagramChecker.sort(two)) < 0) {
+			return -1;
+		} else
+			return 0;
 	}
 
 }
