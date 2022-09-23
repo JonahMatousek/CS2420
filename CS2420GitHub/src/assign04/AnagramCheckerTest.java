@@ -22,14 +22,7 @@ class AnagramCheckerTest {
 	}
 	//TEST INSERTION SORT
 	
-	@Test 
-	void testInsertionSort(){
-		String[] test = new String[] {"rat","apple","tar","acme","random","came","brautworst", "mace","actors","costal","costar"};
-		String[] correct = new String[] {"rat","tar","acme","came","mace","apple","random"};
-		AnagramChecker.insertionSort(test, new AnagramComparator());
-		//System.out.println(Arrays.toString(test));
-		assertTrue(Arrays.equals(test, correct));
-	}
+	
 	
 	@Test 
 	void testInsertionSortTwo(){

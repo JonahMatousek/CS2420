@@ -9,9 +9,9 @@ public class AnagramCheckerTiming {
 	private static ArrayList<String> generateStringArray(int size){
 		String[] alpha = new String[] {"a","b","c","d","e","f","g","h","i","j","k","l","m"};
 		ArrayList<String> stringArrayRand = new ArrayList<>();
-		while(stringArrayRand.size()< size) {
+		while(stringArrayRand.size()< 500) {
 			String newString = "";
-			while(newString.length()< size/100) {
+			while(newString.length()< size) {
 				newString+=(alpha[rand.nextInt(13)]);
 				
 			}
@@ -29,11 +29,11 @@ public class AnagramCheckerTiming {
 		//TODO: Write code to time your toSortedList, contains, and SearchUtil.binarySearch methods so you can plot the results.
 		int timesToLoop = 10000;
 		
-		for (int n = 1000; n <= 20000; n += 1000) {
+		for (int n = 10; n <= 200; n += 10) {
 			// Generate a new "random" ArrayCollection of size n.
 			String[] StringArray = generateStringArray(n).toArray(new String[0]);
-			String val1 = StringArray[rand.nextInt(n)];
-			String val2 = StringArray[rand.nextInt(n)];
+			//String val1 = StringArray[rand.nextInt(n)];
+			//String val2 = StringArray[rand.nextInt(n)];
 			long startTime, midpointTime, stopTime;
 			// First, spin computing stuff until one second has gone by.
 			// This allows this thread to stabilize.
@@ -43,6 +43,8 @@ public class AnagramCheckerTiming {
 			// Now, run the test.
 			startTime = System.nanoTime();
 			for (int i = 0; i < timesToLoop; i++) {
+				String val1 = StringArray[rand.nextInt(n)];
+				String val2 = StringArray[rand.nextInt(n)];
 				AnagramChecker.areAnagrams(val1,val2);
 			}
 			midpointTime = System.nanoTime();
@@ -50,7 +52,8 @@ public class AnagramCheckerTiming {
 			//and
 			// generating a random ISBN.
 			for (int i = 0; i < timesToLoop; i++) {
-			
+				String val1 = StringArray[rand.nextInt(n)];
+				String val2 = StringArray[rand.nextInt(n)];
 			}
 			stopTime = System.nanoTime();
 			// Compute the time, subtract the cost of running the loop
