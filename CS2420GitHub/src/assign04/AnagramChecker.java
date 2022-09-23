@@ -69,21 +69,21 @@ public class AnagramChecker {
 	 * Comparator class or lambda expression that you design.
 	 */
 	public static String[] getLargestAnagramGroup(String[] wordList) {
-		insertionSort(wordList, new AnagramComparator());
+		Arrays.sort(wordList, new AnagramComparator());
 		ArrayList<String> largestAnagramGroup = new ArrayList<>();
 		ArrayList<String> currentAnagramGroup = new ArrayList<>();
-		
+
 		for (int i = 0; i < wordList.length; i++) {
 			if (currentAnagramGroup.size() == 0) {
 				currentAnagramGroup.add(wordList[i]);
 			}
 			if (i + 1 < wordList.length) {
-				
+
 				if (areAnagrams(wordList[i], wordList[i + 1])) {
-					
+
 					if (!currentAnagramGroup.contains(wordList[i + 1])) {
 						currentAnagramGroup.add(wordList[i + 1]);
-						
+
 					}
 					continue;
 				}
@@ -96,7 +96,7 @@ public class AnagramChecker {
 			}
 
 		}
-		if(largestAnagramGroup.size() == 1) {
+		if (largestAnagramGroup.size() == 1) {
 			largestAnagramGroup.clear();
 		}
 		String[] out = largestAnagramGroup.toArray(new String[0]);
@@ -112,17 +112,24 @@ public class AnagramChecker {
 	 * array because there are no anagrams. This method must call your
 	 * getLargestAnagramGroup(String[]) method.
 	 */
-	public static String[] getLargestAnagramGroup(String filename) throws FileNotFoundException {
+	public static String[] getLargestAnagramGroup(String filename) {
 		ArrayList<String> wordList = new ArrayList<String>();
 		File file = new File(filename);
-		Scanner fs = new Scanner(file);
-		while (fs.hasNextLine())
-			wordList.add(fs.nextLine());
-	
-		fs.close();
-		String[] wordListInput = wordList.toArray(new String[0]);
+		Scanner fs;
+		try {
+			fs = new Scanner(file);
 
-		return getLargestAnagramGroup(wordListInput);
+			while (fs.hasNextLine())
+				wordList.add(fs.nextLine());
+
+			fs.close();
+			String[] wordListInput = wordList.toArray(new String[0]);
+
+			return getLargestAnagramGroup(wordListInput);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			return new String[] {};
+		}
 	}
 
 }
