@@ -10,7 +10,7 @@ import java.util.Collections;
  */
 
 public class ArrayListSorter {
-	private static int threshold = 5;
+	private static int threshold = 25;
 
 	/**
 	 * @param <T>
