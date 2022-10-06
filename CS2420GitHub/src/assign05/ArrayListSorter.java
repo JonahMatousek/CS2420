@@ -10,7 +10,7 @@ import java.util.Collections;
  */
 
 public class ArrayListSorter {
-	private static int threshold = 4;
+	private static int threshold = 5;
 
 	/**
 	 * @param <T>
@@ -18,17 +18,21 @@ public class ArrayListSorter {
 	 */
 	public static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list) {
 		ArrayList<T> temp = new ArrayList<T>(list.size());
+		for (int i = 0; i < list.size(); i++) {
+			temp.add(list.get(i));
+		}
 		int start = 0;
 		int end = list.size() - 1;
+		
 		mergesort(list, temp, start, end);
 	}
 
 	/**
 	 * @param <T>
-	 * @param list - list of objects that is to be sorted
-	 * @param temp - temp list that is the same length as list
+	 * @param list  - list of objects that is to be sorted
+	 * @param temp  - temp list that is the same length as list
 	 * @param start - starting index
-	 * @param end - ending index
+	 * @param end   - ending index
 	 */
 	private static <T extends Comparable<? super T>> void mergesort(ArrayList<T> list, ArrayList<T> temp, int start,
 			int end) {
@@ -42,14 +46,15 @@ public class ArrayListSorter {
 		}
 
 	}
+
 	/**
 	 * 
 	 * @param <T>
-	 * @param list - list of objects that is to be sorted
-	 * @param temp - temp list that is the same length as list
+	 * @param list  - list of objects that is to be sorted
+	 * @param temp  - temp list that is the same length as list
 	 * @param start - starting index
-	 * @param mid - middle index
-	 * @param end - ending index
+	 * @param mid   - middle index
+	 * @param end   - ending index
 	 */
 	private static <T extends Comparable<? super T>> void merge(ArrayList<T> list, ArrayList<T> temp, int start,
 			int mid, int end) {
@@ -57,7 +62,7 @@ public class ArrayListSorter {
 		int i1 = start;
 		int i2 = mid;
 		// merges the sections of the array
-		while (i1 < mid && i2 < end) { //possible <= needed
+		while (i1 < mid && i2 <= end) {
 			if (list.get(i1).compareTo(list.get(i2)) == -1) {
 				temp.set(listIndex, list.get(i1));
 				listIndex++;
@@ -75,42 +80,41 @@ public class ArrayListSorter {
 			listIndex++;
 			i1++;
 		}
-		while (i2 < end) { //possible <= needed
-			temp.set(listIndex, list.get(i1));
+		while (i2 <= end) {
+			temp.set(listIndex, list.get(i2));
 			listIndex++;
-			i1++;
+			i2++;
 		}
 		// copy sorted items from temp to list
-		for (int i = start; i < end; i++) {  //possible <= needed
+		for (int i = start; i <= end; i++) {
 			list.set(i, temp.get(i));
 		}
-
 	}
+
 	/**
 	 * 
 	 * @param <T>
-	 * @param list - list of objects that is to be sorted
-	 * @param temp - temp list that is the same length as list
+	 * @param list  - list of objects that is to be sorted
+	 * @param temp  - temp list that is the same length as list
 	 * @param start - starting index
-	 * @param end - ending index
+	 * @param end   - ending index
 	 */
 	private static <T extends Comparable<? super T>> void insertionSort(ArrayList<T> list, ArrayList<T> temp, int start,
 			int end) {
 		int sortedIndex;
-		for (int sortedLength = start + 1; sortedLength < end; sortedLength++) {
+		for (int sortedLength = start + 1; sortedLength <= end; sortedLength++) {
 			sortedIndex = sortedLength - 1;
 			temp.set(sortedLength, list.get(sortedLength));
 			while (sortedIndex >= start) {
 				if (temp.get(sortedLength).compareTo(list.get(sortedIndex)) == -1) {
 					list.set(sortedIndex + 1, list.get(sortedIndex));
 					list.set(sortedIndex, temp.get(sortedLength));
+					sortedIndex--;
 				} else {
-					break;
+					sortedIndex--;
 				}
 			}
-		}
-
-	}
+		}}
 
 	/**
 	 * @param <T>
