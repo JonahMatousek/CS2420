@@ -73,7 +73,7 @@ public class ArrayListSorter {
 				i2++;
 			}
 		}
-		// adds left over items(only one of these while loops will do something in a
+		// adds left over items (only one of these while loops will do something in a
 		// single pass)
 		while (i1 < mid) {
 			temp.set(listIndex, list.get(i1));
