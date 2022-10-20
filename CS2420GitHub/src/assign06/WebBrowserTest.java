@@ -1,11 +1,13 @@
 package assign06;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -61,6 +63,9 @@ public class WebBrowserTest {
 			assertEquals(browser.getCurrentPage().toString(), site.toString());
 			assertTrue(browser.getForwardHistory().size() == 1);
 
+			WebBrowser browser2 = new WebBrowser();
+			assertThrows(NoSuchElementException.class, () -> browser2.back());
+
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -80,6 +85,9 @@ public class WebBrowserTest {
 
 			assertEquals(browser.getCurrentPage().toString(), site2.toString());
 			assertTrue(browser.getForwardHistory().size() == 0);
+
+			WebBrowser browser2 = new WebBrowser();
+			assertThrows(NoSuchElementException.class, () -> browser2.forward());
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -102,22 +110,27 @@ public class WebBrowserTest {
 
 			SinglyLinkedList<URL> history = new SinglyLinkedList<URL>();
 			history = browser.history();
-			String[] arr = new String[] {"http://www.example.com/Help.html","http://www.example.com/FAQ.html","http://www.example.com/index.html","http://www.example.com/docs/resource1.html"};
+			String[] arr = new String[] { "http://www.example.com/Help.html", "http://www.example.com/FAQ.html",
+					"http://www.example.com/index.html", "http://www.example.com/docs/resource1.html" };
 			assertTrue(history.size() == 4);
-			//System.out.println(Arrays.toString(history.toArray()));
-			assertTrue(Arrays.toString(arr).compareTo(Arrays.toString(history.toArray()))==0);
-		//System.out.println(history.getFirst());
+			// System.out.println(Arrays.toString(history.toArray()));
+			assertTrue(Arrays.toString(arr).compareTo(Arrays.toString(history.toArray())) == 0);
+			// System.out.println(history.getFirst());
 //			history.deleteFirst();
-		//System.out.println(history.getFirst());
+			// System.out.println(history.getFirst());
 //			history.deleteFirst();
-		//System.out.println(history.getFirst());
+			// System.out.println(history.getFirst());
 //			history.deleteFirst();
-		//System.out.println(history.getFirst());
-			
-			
+			// System.out.println(history.getFirst());
+
 //			assertEquals(site,history.getFirst());
 //			assertEquals(history.get(1), site2);
 //			assertEquals(history.get(2), site);
+
+			WebBrowser browser2 = new WebBrowser(history);
+
+			assertTrue(browser2.getBackHistory().size() > 0);
+			assertEquals(browser2.getCurrentPage(), site4);
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

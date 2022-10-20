@@ -31,19 +31,18 @@ public class WebBrowser {
 	 * from most recently visited to least recently visited.
 	 */
 	public WebBrowser(SinglyLinkedList<URL> history) {
+		backHistory = new LinkedListStack<URL>();
+		forwardHistory = new LinkedListStack<URL>();
 		currentPage = history.getFirst();
 		history.deleteFirst();
 		LinkedListStack<URL> temp = new LinkedListStack<URL>();
-		for (int i = 0; i < history.size(); i++) {
+		while (0 < history.size()) {
 			temp.push(history.getFirst());
 			history.deleteFirst();
 		}
-		for (int i = 0; i < temp.size(); i++) {
-			backHistory.push(history.getFirst());
-			history.deleteFirst();
+		while (0 < temp.size()) {
+			backHistory.push(temp.pop());
 		}
-		forwardHistory = new LinkedListStack<URL>();
-		;
 	}
 
 	/**
@@ -56,9 +55,9 @@ public class WebBrowser {
 	 */
 	public void visit(URL webpage) {
 		if (currentPage == null) {
-			
+
 		} else {
-		backHistory.push(currentPage);
+			backHistory.push(currentPage);
 		}
 		currentPage = webpage;
 		forwardHistory.clear();
@@ -108,15 +107,15 @@ public class WebBrowser {
 	 */
 	public SinglyLinkedList<URL> history() {
 		LinkedListStack<URL> temp = new LinkedListStack<URL>();
-		//System.out.println(currentPage);
+		// System.out.println(currentPage);
 		temp.push(currentPage);
 		while (backHistory.size() > 0) {
-			//System.out.print("Before: " + backHistory.peek()+" ");
-			//System.out.println(backHistory.peek());
+			// System.out.print("Before: " + backHistory.peek()+" ");
+			// System.out.println(backHistory.peek());
 			temp.push(backHistory.pop());
-			//System.out.println(Arrays.toString(backHistory.toArray()));
-			//System.out.println("After: " + backHistory.peek());
-			//System.out.println(Arrays.toString(temp.toArray()));
+			// System.out.println(Arrays.toString(backHistory.toArray()));
+			// System.out.println("After: " + backHistory.peek());
+			// System.out.println(Arrays.toString(temp.toArray()));
 		}
 		SinglyLinkedList<URL> output = new SinglyLinkedList<URL>();
 		while (temp.size() > 0) {

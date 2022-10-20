@@ -3,6 +3,8 @@ package assign06;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +68,18 @@ class LinkedListStackTest {
 		stack.push("Hello");
 		stack.push("Bye");
 		assertEquals(2, stack.size());
+	}
+	
+	@Test
+	void testPeekExecption() {
+		LinkedListStack<String> stack = new LinkedListStack<>();
+		assertThrows(NoSuchElementException.class,()-> stack.peek());
+	}
+	
+	@Test
+	void testPopExecption() {
+		LinkedListStack<String> stack = new LinkedListStack<>();
+		assertThrows(NoSuchElementException.class,()-> stack.pop());
 	}
 
 }
