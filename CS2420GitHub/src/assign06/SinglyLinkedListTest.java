@@ -149,7 +149,6 @@ class SinglyLinkedListTest {
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		list.deleteFirst();
 		// System.out.println(list.deleteFirst());
 		assertTrue(list.deleteFirst().compareTo("No") == 0);
 	}
@@ -160,7 +159,6 @@ class SinglyLinkedListTest {
 		list.insertFirst(1);
 		list.insertFirst(2);
 		list.insertFirst(3);
-		list.deleteFirst();
 		// System.out.println(list.deleteFirst());
 		assertTrue(list.deleteFirst().compareTo(3) == 0);
 	}
