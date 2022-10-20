@@ -43,7 +43,7 @@ class LinkedListStackTest {
 		LinkedListStack<String> stack = new LinkedListStack<>();
 		stack.push("Hello");
 		stack.push("Bye");
-		System.out.println(Arrays.toString(stack.toArray()));
+		//System.out.println(Arrays.toString(stack.toArray()));
 		String[] correct = new String[] { "Bye", "Hello" };
 		assertTrue(Arrays.equals(stack.toArray(), correct));
 	}
@@ -55,6 +55,9 @@ class LinkedListStackTest {
 		stack.push("Bye");
 		String correct = stack.pop();
 		assertEquals(correct, "Bye");
+		String[] arr = new String[] {"Hello"};
+		assertTrue(Arrays.equals(arr, stack.toArray()));
+		//System.out.println(Arrays.toString(stack.toArray()));
 	}
 
 	@Test

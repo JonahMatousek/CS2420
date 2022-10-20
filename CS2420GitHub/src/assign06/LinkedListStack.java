@@ -55,9 +55,9 @@ public class LinkedListStack<T> implements Stack<T> {
 	public T pop() throws NoSuchElementException {
 		if (stack.size() == 0)
 			throw new NoSuchElementException();
-		T out = stack.getFirst();
-		stack.deleteFirst();
-		return out;
+		
+		
+		return stack.deleteFirst();
 	}
 
 	/**

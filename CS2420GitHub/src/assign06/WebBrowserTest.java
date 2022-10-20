@@ -103,13 +103,13 @@ public class WebBrowserTest {
 			history = browser.history();
 
 			assertTrue(history.size() == 4);
-//			System.out.println(history.getFirst());
+		System.out.println(history.getFirst());
 //			history.deleteFirst();
-//			System.out.println(history.getFirst());
+		System.out.println(history.getFirst());
 //			history.deleteFirst();
-//			System.out.println(history.getFirst());
+		System.out.println(history.getFirst());
 //			history.deleteFirst();
-//			System.out.println(history.getFirst());
+		System.out.println(history.getFirst());
 			
 			
 //			assertEquals(site,history.getFirst());

@@ -142,7 +142,7 @@ public class SinglyLinkedList<T> implements List<T> {
 		}
 		T out = head.val;
 
-		head.nextID = head;
+		head = head.nextID;
 		length--;
 		return out;
 	}

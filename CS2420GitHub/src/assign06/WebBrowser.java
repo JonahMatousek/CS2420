@@ -1,6 +1,7 @@
 package assign06;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
@@ -55,9 +56,10 @@ public class WebBrowser {
 	 */
 	public void visit(URL webpage) {
 		if (currentPage == null) {
-		} else {
-			backHistory.push(currentPage);
-		}
+			return;
+		} 
+		backHistory.push(currentPage);
+		
 		currentPage = webpage;
 		forwardHistory.clear();
 	}
@@ -106,11 +108,15 @@ public class WebBrowser {
 	 */
 	public SinglyLinkedList<URL> history() {
 		LinkedListStack<URL> temp = new LinkedListStack<URL>();
+		//System.out.println(currentPage);
 		temp.push(currentPage);
 		while (backHistory.size() > 0) {
-			System.out.print("Before: " + backHistory.peek()+" ");
+			//System.out.print("Before: " + backHistory.peek()+" ");
+			//System.out.println(backHistory.peek());
 			temp.push(backHistory.pop());
-			System.out.println("After: " + backHistory.peek());
+			System.out.println(Arrays.toString(backHistory.toArray()));
+			//System.out.println("After: " + backHistory.peek());
+			//System.out.println(Arrays.toString(temp.toArray()));
 		}
 		SinglyLinkedList<URL> output = new SinglyLinkedList<URL>();
 		while (temp.size() > 0) {
