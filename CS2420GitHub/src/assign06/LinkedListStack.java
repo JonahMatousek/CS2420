@@ -1,4 +1,3 @@
-
 package assign06;
 
 import java.util.NoSuchElementException;
@@ -25,21 +24,21 @@ public class LinkedListStack<T> implements Stack<T>{
 	public T peek() throws NoSuchElementException {
 		if(stack.size()==0)
 			throw new NoSuchElementException();
-		return stack.get(stack.size());
+		return stack.getFirst();
 	}
 
 	@Override
 	public T pop() throws NoSuchElementException {
 		if(stack.size()==0)
 			throw new NoSuchElementException();
-		T out = stack.get(stack.size());
-		stack.delete(stack.size());
+		T out = stack.getFirst();
+		stack.deleteFirst();
 		return out;
 	}
 
 	@Override
 	public void push(T element) {
-		stack.insert(stack.size(), element);
+		stack.insertFirst(element);
 		
 	}
 
@@ -48,6 +47,9 @@ public class LinkedListStack<T> implements Stack<T>{
 		
 		return stack.size();
 		
+	}
+	public Object[] toArray() {
+		return stack.toArray();
 	}
 
 }

@@ -19,6 +19,15 @@ class SinglyLinkedListTest {
 		//System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(),correct));
 	}
+
+	@Test
+	void testInsertFirstInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		Object[] correct = new Object[]{1};
+		//System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(),correct));
+	}
 	
 	@Test
 	void testInsertFirstMultiple() {
@@ -27,6 +36,17 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		String[] correct = new String[] {"No","Bye","Hello"};
+		//System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(),correct));
+	}
+
+	@Test
+	void testInsertFirstMultipleInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		Object[] correct = new Object[] {3,2,1};
 		//System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(),correct));
 	}
@@ -44,6 +64,20 @@ class SinglyLinkedListTest {
 		//System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(),correct));
 	}
+
+	@Test
+	void testInsertMiddleInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		list.insertFirst(4);
+		list.insertFirst(5);
+		list.insert(3, 6);
+		Object[] correct = new Object[] {5,4,3,6,2,1};
+		//System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(),correct));
+	}
 	
 	@Test
 	void testInsertEnd() {
@@ -56,6 +90,18 @@ class SinglyLinkedListTest {
 		//System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(),correct));
 	}
+
+	@Test
+	void testInsertEndInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		list.insert(3, 4);
+		Object[] correct = new Object[] {3,2,1,4};
+		//System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(),correct));
+	}
 	
 	@Test
 	void testGetFirst() {
@@ -64,6 +110,15 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		assertTrue(list.getFirst().compareTo("No")==0);
+	}
+
+	@Test
+	void testGetFirstInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		assertTrue(list.getFirst().compareTo(3)==0);
 	}
 	
 	@Test
@@ -74,6 +129,16 @@ class SinglyLinkedListTest {
 		list.insertFirst("No");
 		//System.out.println(list.get(1));
 		assertTrue(list.get(2).compareTo("Hello")==0);
+	}
+
+	@Test
+	void testGetIndexInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		//System.out.println(list.get(1));
+		assertTrue(list.get(2).compareTo(1)==0);
 	}
 	
 	@Test
@@ -199,7 +264,7 @@ class SinglyLinkedListTest {
 		String[] correct = new String[] {"Bye","Hello"};
 		iter.next();
 		iter.remove();
-		System.out.print(Arrays.toString(list.toArray()));
+		//System.out.print(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(correct, list.toArray()));
 	}
 

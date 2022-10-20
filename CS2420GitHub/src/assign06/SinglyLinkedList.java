@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import java.util.NoSuchElementException;
 
+
+
 public class SinglyLinkedList<T> implements List<T> {
 
 	private LinkedNode head;
@@ -50,6 +52,8 @@ public class SinglyLinkedList<T> implements List<T> {
 	public void insert(int index, T element) throws IndexOutOfBoundsException {
 		if (length < index || index < 0)
 			throw new IndexOutOfBoundsException();
+		if (index == 0)
+			this.insertFirst(element);
 		LinkedNode newNode = new LinkedNode(element);
 		LinkedNode temp = head;
 		for (int i = 0; i < index - 1; i++) {
