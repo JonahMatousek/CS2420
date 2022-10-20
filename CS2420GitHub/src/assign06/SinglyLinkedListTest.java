@@ -7,37 +7,39 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
-
-
+/**
+ * @author Casey Parker and Jonah Matousek
+ * @version October 19, 2022
+ */
 class SinglyLinkedListTest {
 
 	@Test
 	void testInsertFirst() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
-		String[] correct = new String[] {"Hello"};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		String[] correct = new String[] { "Hello" };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
 
 	@Test
 	void testInsertFirstInt() {
 		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
 		list.insertFirst(1);
-		Object[] correct = new Object[]{1};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		Object[] correct = new Object[] { 1 };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
-	
+
 	@Test
 	void testInsertFirstMultiple() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		String[] correct = new String[] {"No","Bye","Hello"};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		String[] correct = new String[] { "No", "Bye", "Hello" };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
 
 	@Test
@@ -46,11 +48,11 @@ class SinglyLinkedListTest {
 		list.insertFirst(1);
 		list.insertFirst(2);
 		list.insertFirst(3);
-		Object[] correct = new Object[] {3,2,1};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		Object[] correct = new Object[] { 3, 2, 1 };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
-	
+
 	@Test
 	void testInsertMiddle() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -60,9 +62,9 @@ class SinglyLinkedListTest {
 		list.insertFirst("Nope");
 		list.insertFirst("again");
 		list.insert(3, "Surprise");
-		String[] correct = new String[] {"again","Nope","No","Surprise","Bye","Hello"};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		String[] correct = new String[] { "again", "Nope", "No", "Surprise", "Bye", "Hello" };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
 
 	@Test
@@ -74,11 +76,11 @@ class SinglyLinkedListTest {
 		list.insertFirst(4);
 		list.insertFirst(5);
 		list.insert(3, 6);
-		Object[] correct = new Object[] {5,4,3,6,2,1};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		Object[] correct = new Object[] { 5, 4, 3, 6, 2, 1 };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
-	
+
 	@Test
 	void testInsertEnd() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -86,9 +88,9 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		list.insert(3, "Surprise");
-		String[] correct = new String[] {"No","Bye","Hello","Surprise"};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		String[] correct = new String[] { "No", "Bye", "Hello", "Surprise" };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
 
 	@Test
@@ -98,18 +100,18 @@ class SinglyLinkedListTest {
 		list.insertFirst(2);
 		list.insertFirst(3);
 		list.insert(3, 4);
-		Object[] correct = new Object[] {3,2,1,4};
-		//System.out.println(Arrays.toString(list.toArray()));
-		assertTrue(Arrays.equals(list.toArray(),correct));
+		Object[] correct = new Object[] { 3, 2, 1, 4 };
+		// System.out.println(Arrays.toString(list.toArray()));
+		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
-	
+
 	@Test
 	void testGetFirst() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		assertTrue(list.getFirst().compareTo("No")==0);
+		assertTrue(list.getFirst().compareTo("No") == 0);
 	}
 
 	@Test
@@ -118,17 +120,17 @@ class SinglyLinkedListTest {
 		list.insertFirst(1);
 		list.insertFirst(2);
 		list.insertFirst(3);
-		assertTrue(list.getFirst().compareTo(3)==0);
+		assertTrue(list.getFirst().compareTo(3) == 0);
 	}
-	
+
 	@Test
 	void testGetIndex() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		//System.out.println(list.get(1));
-		assertTrue(list.get(2).compareTo("Hello")==0);
+		// System.out.println(list.get(1));
+		assertTrue(list.get(2).compareTo("Hello") == 0);
 	}
 
 	@Test
@@ -137,10 +139,10 @@ class SinglyLinkedListTest {
 		list.insertFirst(1);
 		list.insertFirst(2);
 		list.insertFirst(3);
-		//System.out.println(list.get(1));
-		assertTrue(list.get(2).compareTo(1)==0);
+		// System.out.println(list.get(1));
+		assertTrue(list.get(2).compareTo(1) == 0);
 	}
-	
+
 	@Test
 	void testDeleteFirst() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -148,42 +150,71 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		list.deleteFirst();
-		//System.out.println(list.deleteFirst());
-		assertTrue(list.deleteFirst().compareTo("No")==0);
+		// System.out.println(list.deleteFirst());
+		assertTrue(list.deleteFirst().compareTo("No") == 0);
 	}
 	
+	@Test
+	void testDeleteFirstInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		list.deleteFirst();
+		// System.out.println(list.deleteFirst());
+		assertTrue(list.deleteFirst().compareTo(3) == 0);
+	}
+
 	@Test
 	void testDeleteMiddle() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		
-		assertTrue(list.delete(1).compareTo("Bye")==0);
+
+		assertTrue(list.delete(1).compareTo("Bye") == 0);
 	}
 	
+	void testDeleteMiddleInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+
+		assertTrue(list.delete(1).compareTo(2) == 0);
+	}
+
 	@Test
 	void testIndexOf() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		assertEquals(2,list.indexOf("Hello"));
+		assertEquals(2, list.indexOf("Hello"));
 	}
 	
+	@Test
+	void testIndexOfInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		assertEquals(2, list.indexOf(1));
+	}
+
 	@Test
 	void testSize() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		assertEquals(3,list.size());
+		assertEquals(3, list.size());
 		list.deleteFirst();
-		assertEquals(2,list.size());
-		
+		assertEquals(2, list.size());
+
 	}
-	
-	@Test 
+
+	@Test
 	void testSizeOther() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
@@ -192,14 +223,15 @@ class SinglyLinkedListTest {
 		list.insert(3, "Hi");
 		list.insert(2, "Boo");
 		list.delete(1);
-		assertEquals(4,list.size());
+		assertEquals(4, list.size());
 	}
-	
+
 	@Test
 	void testIsEmpty() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		assertTrue(list.isEmpty());
 	}
+
 	@Test
 	void testIsEmptyOther() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -208,28 +240,38 @@ class SinglyLinkedListTest {
 		list.insertFirst("No");
 		assertFalse(list.isEmpty());
 	}
-	
+
 	@Test
 	void testClear() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		assertTrue(list.size()==3);
+		assertTrue(list.size() == 3);
 		list.clear();
-		assertTrue(list.size()==0);
+		assertTrue(list.size() == 0);
 	}
-	
+
 	@Test
 	void testToArray() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		String[] correct = new String[] {"No","Bye","Hello"};
+		String[] correct = new String[] { "No", "Bye", "Hello" };
 		assertTrue(Arrays.equals(correct, list.toArray()));
 	}
 	
+	@Test
+	void testToArrayInt() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		Object[] correct = new Object[] { 3, 2, 1 };
+		assertTrue(Arrays.equals(correct, list.toArray()));
+	}
+
 	@Test
 	void testHasNext() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -241,7 +283,7 @@ class SinglyLinkedListTest {
 		iter.next();
 		assertTrue(iter.hasNext());
 	}
-	
+
 	@Test
 	void testNext() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -249,11 +291,11 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		Iterator<String> iter = list.iterator();
-		assertEquals("No",iter.next());
-		assertEquals("Bye",iter.next());
-		//System.out.print(Arrays.toString(list.toArray()));
+		assertEquals("No", iter.next());
+		assertEquals("Bye", iter.next());
+		// System.out.print(Arrays.toString(list.toArray()));
 	}
-	
+
 	@Test
 	void testIteratorRemove() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -261,10 +303,10 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		Iterator<String> iter = list.iterator();
-		String[] correct = new String[] {"Bye","Hello"};
+		String[] correct = new String[] { "Bye", "Hello" };
 		iter.next();
 		iter.remove();
-		//System.out.print(Arrays.toString(list.toArray()));
+		// System.out.print(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(correct, list.toArray()));
 	}
 

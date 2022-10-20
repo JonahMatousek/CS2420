@@ -37,15 +37,15 @@ public interface Stack<E> {
 	 * @return the element at the top of the stack
 	 * @throws NoSuchElementException if the stack is empty
 	 */
-	public E pop() throws NoSuchElementException; 
+	public E pop() throws NoSuchElementException;
 
 	/**
 	 * Adds a given element to the stack, putting it at the top of the stack.
 	 * 
 	 * @param element - the element to be added
 	 */
-	public void push(E element); 
-	
+	public void push(E element);
+
 	/**
 	 * @return the number of elements in the stack
 	 */
