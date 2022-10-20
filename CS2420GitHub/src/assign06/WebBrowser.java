@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
  * @version October 19, 2022
  */
 public class WebBrowser {
-	private Stack<URL> backHistory;
-	private Stack<URL> forwardHistory;
+	private LinkedListStack<URL> backHistory;
+	private LinkedListStack<URL> forwardHistory;
 	private URL currentPage;
 
 	/**
