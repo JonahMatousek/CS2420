@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -104,6 +105,11 @@ class SinglyLinkedListTest {
 		// System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
+	@Test
+	void testInsertException() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		assertThrows(IndexOutOfBoundsException.class,()->{list.insert(3,2);});
+	}
 
 	@Test
 	void testGetFirst() {
@@ -112,6 +118,11 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		assertTrue(list.getFirst().compareTo("No") == 0);
+	}
+	@Test
+	void testGetFirstException() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		assertThrows(NoSuchElementException.class,()->{list.getFirst();});
 	}
 
 	@Test
@@ -132,6 +143,12 @@ class SinglyLinkedListTest {
 		// System.out.println(list.get(1));
 		assertTrue(list.get(2).compareTo("Hello") == 0);
 	}
+	@Test
+	void testGetIndexException() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		assertThrows(IndexOutOfBoundsException.class,()->{list.get(4);});
+	}
+
 
 	@Test
 	void testGetIndexInt() {
@@ -149,10 +166,16 @@ class SinglyLinkedListTest {
 		list.insertFirst("Hello");
 		list.insertFirst("Bye");
 		list.insertFirst("No");
-		list.deleteFirst();
-		// System.out.println(list.deleteFirst());
+		
+
 		assertTrue(list.deleteFirst().compareTo("No") == 0);
 	}
+	@Test
+	void testDeleteFirstException() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		assertThrows(NoSuchElementException.class,()->{list.deleteFirst();});
+	}
+	
 	
 	@Test
 	void testDeleteFirstInt() {
@@ -160,7 +183,7 @@ class SinglyLinkedListTest {
 		list.insertFirst(1);
 		list.insertFirst(2);
 		list.insertFirst(3);
-		list.deleteFirst();
+		
 		// System.out.println(list.deleteFirst());
 		assertTrue(list.deleteFirst().compareTo(3) == 0);
 	}
@@ -173,6 +196,12 @@ class SinglyLinkedListTest {
 		list.insertFirst("No");
 
 		assertTrue(list.delete(1).compareTo("Bye") == 0);
+	}
+	
+	@Test
+	void testDeleteIndexException() {
+		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+		assertThrows(IndexOutOfBoundsException.class,()->{list.delete(4);});
 	}
 	
 	void testDeleteMiddleInt() {
