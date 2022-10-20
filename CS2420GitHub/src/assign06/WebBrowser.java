@@ -18,7 +18,9 @@ public class WebBrowser {
 	 * webpages and no webpages to visit next.
 	 */
 	public WebBrowser() {
-
+		backHistory = new LinkedListStack<URL>();
+		forwardHistory = new LinkedListStack<URL>();
+		currentPage = null;
 	}
 
 	/**
@@ -39,6 +41,8 @@ public class WebBrowser {
 			backHistory.push(history.getFirst());
 			history.deleteFirst();
 		}
+		forwardHistory = new LinkedListStack<URL>();
+		;
 	}
 
 	/**
@@ -50,6 +54,10 @@ public class WebBrowser {
 	 * @param webpage
 	 */
 	public void visit(URL webpage) {
+		if (currentPage == null) {
+		} else {
+			backHistory.push(currentPage);
+		}
 		currentPage = webpage;
 		forwardHistory.clear();
 	}
@@ -62,7 +70,7 @@ public class WebBrowser {
 	 * @throws NoSuchElementException
 	 */
 	public URL back() throws NoSuchElementException {
-		if (backHistory.size() <= 0 || backHistory.equals(null)) {
+		if (backHistory.size() <= 0 || backHistory == null) {
 			throw new NoSuchElementException();
 		}
 		forwardHistory.push(currentPage);
@@ -79,7 +87,7 @@ public class WebBrowser {
 	 * @throws NoSuchElementException
 	 */
 	public URL forward() throws NoSuchElementException {
-		if (forwardHistory.size() <= 0 || forwardHistory.equals(null)) {
+		if (forwardHistory.size() <= 0 || forwardHistory == null) {
 			throw new NoSuchElementException();
 		}
 		backHistory.push(currentPage);
@@ -99,13 +107,34 @@ public class WebBrowser {
 	public SinglyLinkedList<URL> history() {
 		LinkedListStack<URL> temp = new LinkedListStack<URL>();
 		temp.push(currentPage);
-		for (int i = 0; i < backHistory.size(); i++) {
+		while (backHistory.size() > 0) {
+			System.out.print("Before: " + backHistory.peek()+" ");
 			temp.push(backHistory.pop());
+			System.out.println("After: " + backHistory.peek());
 		}
 		SinglyLinkedList<URL> output = new SinglyLinkedList<URL>();
-		for (int i = 0; i < temp.size(); i++) {
+		while (temp.size() > 0) {
+			backHistory.push(temp.peek());
 			output.insertFirst(temp.pop());
 		}
 		return output;
+	}
+
+	/**
+	 * returns the current page
+	 * 
+	 * @return current page
+	 */
+	public URL getCurrentPage() {
+		return currentPage;
+
+	}
+
+	public LinkedListStack<URL> getForwardHistory() {
+		return forwardHistory;
+	}
+
+	public LinkedListStack<URL> getBackHistory() {
+		return backHistory;
 	}
 }

@@ -3,6 +3,7 @@ package assign06;
 import java.util.Iterator;
 
 import java.util.NoSuchElementException;
+import java.lang.IndexOutOfBoundsException;
 
 /**
  * @author Casey Parker and Jonah Matousek
