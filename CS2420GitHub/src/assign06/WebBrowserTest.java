@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -101,15 +102,17 @@ public class WebBrowserTest {
 
 			SinglyLinkedList<URL> history = new SinglyLinkedList<URL>();
 			history = browser.history();
-
+			String[] arr = new String[] {"http://www.example.com/Help.html","http://www.example.com/FAQ.html","http://www.example.com/index.html","http://www.example.com/docs/resource1.html"};
 			assertTrue(history.size() == 4);
-		System.out.println(history.getFirst());
+			//System.out.println(Arrays.toString(history.toArray()));
+			assertTrue(Arrays.toString(arr).compareTo(Arrays.toString(history.toArray()))==0);
+		//System.out.println(history.getFirst());
 //			history.deleteFirst();
-		System.out.println(history.getFirst());
+		//System.out.println(history.getFirst());
 //			history.deleteFirst();
-		System.out.println(history.getFirst());
+		//System.out.println(history.getFirst());
 //			history.deleteFirst();
-		System.out.println(history.getFirst());
+		//System.out.println(history.getFirst());
 			
 			
 //			assertEquals(site,history.getFirst());

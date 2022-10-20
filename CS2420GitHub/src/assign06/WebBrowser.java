@@ -1,7 +1,7 @@
 package assign06;
 
 import java.net.URL;
-import java.util.Arrays;
+
 import java.util.NoSuchElementException;
 
 /**
@@ -56,10 +56,10 @@ public class WebBrowser {
 	 */
 	public void visit(URL webpage) {
 		if (currentPage == null) {
-			return;
-		} 
+			
+		} else {
 		backHistory.push(currentPage);
-		
+		}
 		currentPage = webpage;
 		forwardHistory.clear();
 	}
@@ -114,7 +114,7 @@ public class WebBrowser {
 			//System.out.print("Before: " + backHistory.peek()+" ");
 			//System.out.println(backHistory.peek());
 			temp.push(backHistory.pop());
-			System.out.println(Arrays.toString(backHistory.toArray()));
+			//System.out.println(Arrays.toString(backHistory.toArray()));
 			//System.out.println("After: " + backHistory.peek());
 			//System.out.println(Arrays.toString(temp.toArray()));
 		}
