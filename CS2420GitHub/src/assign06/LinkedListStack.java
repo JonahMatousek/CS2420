@@ -1,43 +1,53 @@
+
 package assign06;
 
 import java.util.NoSuchElementException;
 
 public class LinkedListStack<T> implements Stack<T>{
+	private SinglyLinkedList<T> stack;
+	
+	LinkedListStack(){
+		stack = new SinglyLinkedList<>();
+	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		stack.clear();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return stack.isEmpty();
+		
 	}
 
 	@Override
 	public T peek() throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		return null;
+		if(stack.size()==0)
+			throw new NoSuchElementException();
+		return stack.get(stack.size());
 	}
 
 	@Override
 	public T pop() throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		return null;
+		if(stack.size()==0)
+			throw new NoSuchElementException();
+		T out = stack.get(stack.size());
+		stack.delete(stack.size());
+		return out;
 	}
 
 	@Override
-	public void push(Object element) {
-		// TODO Auto-generated method stub
+	public void push(T element) {
+		stack.insert(stack.size(), element);
 		
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return stack.size();
+		
 	}
 
 }
