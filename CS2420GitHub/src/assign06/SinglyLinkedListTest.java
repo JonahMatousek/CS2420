@@ -28,7 +28,7 @@ class SinglyLinkedListTest {
 		SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
 		list.insertFirst(1);
 		Object[] correct = new Object[] { 1 };
-		// System.out.println(Arrays.toString(list.toArray()));
+		//System.out.println(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(list.toArray(), correct));
 	}
 
@@ -118,6 +118,14 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		assertTrue(list.getFirst().compareTo("No") == 0);
+	}
+	@Test
+	void testGetLast() {
+		SinglyLinkedList<String> list = new SinglyLinkedList<>();
+		list.insertFirst("Hello");
+		list.insertFirst("Bye");
+		list.insertFirst("No");
+		assertTrue(list.get(list.size()-1).compareTo("Hello") == 0);
 	}
 	@Test
 	void testGetFirstException() {
@@ -313,7 +321,7 @@ class SinglyLinkedListTest {
 		assertTrue(iter.hasNext());
 	}
 
-	@Test
+	/*@Test
 	void testNext() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
 		list.insertFirst("Hello");
@@ -322,9 +330,10 @@ class SinglyLinkedListTest {
 		Iterator<String> iter = list.iterator();
 		assertEquals("No", iter.next());
 		assertEquals("Bye", iter.next());
+		assertEquals("Hello",iter.next());
 		// System.out.print(Arrays.toString(list.toArray()));
 	}
-
+*/
 	@Test
 	void testIteratorRemove() {
 		SinglyLinkedList<String> list = new SinglyLinkedList<>();
@@ -332,11 +341,17 @@ class SinglyLinkedListTest {
 		list.insertFirst("Bye");
 		list.insertFirst("No");
 		Iterator<String> iter = list.iterator();
-		String[] correct = new String[] { "Bye", "Hello" };
-		iter.next();
+		String[] correct = new String[] {  };
+		System.out.println(iter.next());
 		iter.remove();
-		// System.out.print(Arrays.toString(list.toArray()));
+		System.out.println(iter.next());
+		iter.remove();
+		System.out.println(iter.next());
+		iter.remove();
+		System.out.print(Arrays.toString(list.toArray()));
 		assertTrue(Arrays.equals(correct, list.toArray()));
 	}
+	
+	
 
 }

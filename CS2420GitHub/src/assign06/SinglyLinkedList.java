@@ -117,7 +117,7 @@ public class SinglyLinkedList<T> implements List<T> {
 		}
 		LinkedNode temp = head;
 		T out = null;
-
+	
 		for (int i = 0; i < index; i++) {
 
 			temp = temp.nextID;
@@ -281,14 +281,21 @@ public class SinglyLinkedList<T> implements List<T> {
 		}
 
 		public T next() {
-			if (lastNode != null)
-				previousLastNode = lastNode;
-			if (currentNode.nextID == null) {
+			if (currentNode == null) {
 				throw new NoSuchElementException();
 			}
 			T out = currentNode.val;
+			//if (lastNode != null)
+				
+			
+			previousLastNode = lastNode;
 			lastNode = currentNode;
+			
 			currentNode = currentNode.nextID;
+			removeCalled = false;
+			
+			
+			
 
 			return out;
 
@@ -296,7 +303,7 @@ public class SinglyLinkedList<T> implements List<T> {
 
 		public void remove() {
 
-			if (lastNode == null || removeCalled == true) {
+			if (lastNode == null || removeCalled ) {
 				throw new IllegalStateException();
 			} else if (previousLastNode == null) {
 				head = currentNode;
