@@ -144,7 +144,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 	public boolean remove(T item) {
 		TreeNode out = remove(root, item);
 		size--;
-		if (out == null||out.val.compareTo(item)!=0)
+		if (out == null || out.val.compareTo(item) != 0)
 			return false;
 		else
 			return true;
@@ -174,12 +174,12 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 
 	@Override
 	public boolean removeAll(Collection<? extends T> items) {
-
+		boolean b = false;
 		for (T item : items) {
-			if (remove(item) == false)
-				return false;
+			if (remove(item) == true)
+				b = true;
 		}
-		return true;
+		return b;
 	}
 
 	@Override
