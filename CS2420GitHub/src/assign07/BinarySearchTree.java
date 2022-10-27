@@ -142,12 +142,16 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 
 	@Override
 	public boolean remove(T item) {
-		TreeNode out = remove(root, item);
-		size--;
-		if (out == null || out.val.compareTo(item) != 0)
+		if(root==null || this.contains(item)==false) {
 			return false;
-		else
+		}else {
+		if (remove(root,item)!= null) {
+			size--;
 			return true;
+		}else
+			return false;
+		}		
+		
 
 	}
 
