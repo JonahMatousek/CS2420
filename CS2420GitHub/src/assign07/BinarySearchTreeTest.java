@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +77,10 @@ class BinarySearchTreeTest {
 		tree.add("Crabs");
 		tree.add("Train");
 		assertTrue(tree.contains("Yams"));
+		
+		assertFalse(tree.contains("Not Here"));
 	}
+	
 	
 	@Test
 	void testContainsAll() {
@@ -94,6 +97,9 @@ class BinarySearchTreeTest {
 		list.add("Hello");
 		list.add("Bye");
 		assertTrue(tree.containsAll(list));
+		
+		list.add("Not Here");
+		assertFalse(tree.containsAll(list));
 	}
 	
 	@Test
@@ -107,6 +113,9 @@ class BinarySearchTreeTest {
 		tree.add("Train");
 		tree.add("No");
 		assertEquals("Apple",tree.first());
+		
+		BinarySearchTree<String> tree2 = new BinarySearchTree<>();
+		assertThrows(NoSuchElementException.class,()-> tree2.first());
 	}
 	@Test
 	void testLast() {
@@ -119,6 +128,9 @@ class BinarySearchTreeTest {
 		tree.add("Train");
 		tree.add("No");
 		assertEquals("Yams",tree.last());
+		
+		BinarySearchTree<String> tree2 = new BinarySearchTree<>();
+		assertThrows(NoSuchElementException.class,()-> tree2.last());
 	}
 	
 	@Test 
@@ -153,6 +165,9 @@ class BinarySearchTreeTest {
 		
 		
 		assertEquals(correct.toString(),tree.toArrayList().toString());
+		
+		BinarySearchTree<String> tree2 = new BinarySearchTree<>();
+		assertFalse(tree2.remove("Not Here"));
 	}
 	
 	@Test

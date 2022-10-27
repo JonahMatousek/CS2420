@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.NoSuchElementException;
 
 /**
- * @author Casey Parker
+ * @author Casey Parker and Jonah Matousek
  *
  * @param <Type>
  */
@@ -15,7 +15,6 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 		private T val;
 		private TreeNode leftChild;
 		private TreeNode rightChild;
-		
 
 		TreeNode(T val) {
 			this.val = val;
@@ -40,8 +39,8 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 
 	@Override
 	public boolean add(T item) {
-		//if (this.contains(item))
-			//return false;
+		// if (this.contains(item))
+		// return false;
 		root = add(root, item);
 		size++;
 		return true;
@@ -74,30 +73,30 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 
 	@Override
 	public boolean contains(T item) {
-		if(this.root.val.compareTo(item) == 0)
+		if (this.root.val.compareTo(item) == 0)
 			return true;
-		return contains(root,item);
-		
+		return contains(root, item);
+
 	}
-	
+
 	private boolean contains(TreeNode root, T item) {
 		if (root == null)
 			return false;
-		else if(root.val.compareTo(item)==0)
+		else if (root.val.compareTo(item) == 0)
 			return true;
 		else if (root.val.compareTo(item) > 0)
-			return contains(root.leftChild,item);
+			return contains(root.leftChild, item);
 		else
-			return contains(root.rightChild,item);
+			return contains(root.rightChild, item);
 	}
 
 	@Override
 	public boolean containsAll(Collection<? extends T> items) {
-		
-		for(T item:items) {
-			if(this.contains(item)==false)
+
+		for (T item : items) {
+			if (this.contains(item) == false)
 				return false;
-	
+
 		}
 		return true;
 	}
@@ -109,8 +108,9 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 		else
 			return first(root);
 	}
+
 	private T first(TreeNode root) {
-		if(root.leftChild != null)
+		if (root.leftChild != null)
 			return first(root.leftChild);
 		else
 			return root.val;
@@ -142,42 +142,40 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 
 	@Override
 	public boolean remove(T item) {
-		TreeNode out = remove(root,item);
+		TreeNode out = remove(root, item);
 		size--;
-		if(out==null)
+		if (out == null)
 			return false;
 		else
 			return true;
-		
+
 	}
-	
-	private TreeNode remove(TreeNode root,T item) {
-		if(root == null)
+
+	private TreeNode remove(TreeNode root, T item) {
+		if (root == null)
 			return root;
-		
-		else if(root.val.compareTo(item) > 0) {
-			root.leftChild = remove(root.leftChild,item);
-		}else if(root.val.compareTo(item) < 0)
-			root.rightChild = remove(root.rightChild,item);
+
+		else if (root.val.compareTo(item) > 0) {
+			root.leftChild = remove(root.leftChild, item);
+		} else if (root.val.compareTo(item) < 0)
+			root.rightChild = remove(root.rightChild, item);
 		else {
-			if(root.leftChild == null)
+			if (root.leftChild == null)
 				return root.rightChild;
-			else if(root.rightChild == null)
+			else if (root.rightChild == null)
 				return root.leftChild;
 			root.val = first(root.rightChild);
-		
-		
-			root.rightChild = remove(root.rightChild,root.val);
+
+			root.rightChild = remove(root.rightChild, root.val);
 		}
 		return root;
-			
-		
+
 	}
-	
+
 	@Override
 	public boolean removeAll(Collection<? extends T> items) {
-		
-		for(T item:items) {
+
+		for (T item : items) {
 			if (remove(item) == false)
 				return false;
 		}
@@ -196,20 +194,17 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 	}
 
 	public ArrayList<T> toArrayList(TreeNode head) {
-		//ArrayList<T> sortedTreeList = new ArrayList<T>();
-		
+		// ArrayList<T> sortedTreeList = new ArrayList<T>();
+
 		if (head != null) {
 			toArrayList(head.leftChild);
-			//System.out.println(head.val);
+			// System.out.println(head.val);
 			listTree.add(head.val);
 			toArrayList(head.rightChild);
 		}
-			
-		
-			
-			return listTree;
-		
-		
+
+		return listTree;
+
 	}
 
 }
