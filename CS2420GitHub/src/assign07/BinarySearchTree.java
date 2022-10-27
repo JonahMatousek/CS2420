@@ -180,7 +180,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 	public boolean removeAll(Collection<? extends T> items) {
 		boolean b = false;
 		for (T item : items) {
-			if (remove(item) == true)
+			if (remove(item))
 				b = true;
 		}
 		return b;

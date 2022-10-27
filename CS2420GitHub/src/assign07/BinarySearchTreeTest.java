@@ -165,9 +165,10 @@ class BinarySearchTreeTest {
 		assertEquals(correct.toString(), tree.toArrayList().toString());
 
 		BinarySearchTree<String> tree2 = new BinarySearchTree<>();
-		assertFalse(tree2.remove("Not Here"));
-		tree2.add("Not Here");
-		assertTrue(tree2.remove("Not Here"));
+		assertFalse(tree2.remove("No"));
+		tree2.add("Yes");
+		tree2.add("No");
+		assertTrue(tree2.remove("No"));
 	}
 
 	@Test
@@ -185,7 +186,8 @@ class BinarySearchTreeTest {
 		list.add("Apple");
 		list.add("Hello");
 		list.add("Yams");
-		tree.removeAll(list);
+		list.add("Test");
+		assertTrue(tree.removeAll(list));
 		ArrayList<String> correct = new ArrayList<>();
 		correct.add("Bye");
 		correct.add("Crabs");
@@ -193,12 +195,12 @@ class BinarySearchTreeTest {
 		assertEquals(correct.toString(), tree.toArrayList().toString());
 
 		BinarySearchTree<String> tree2 = new BinarySearchTree<>();
-		tree2.add("Hello");
 		tree2.add("Bye");
+		tree2.add("Hello");
 		Collection<String> list2 = new ArrayList<String>();
 		list2.add("Apple");
 		list2.add("Hello");
-		assertTrue(tree.removeAll(list2));
+		assertTrue(tree2.removeAll(list2));
 
 	}
 
