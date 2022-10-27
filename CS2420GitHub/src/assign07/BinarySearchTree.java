@@ -144,7 +144,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> implements Sorted
 	public boolean remove(T item) {
 		TreeNode out = remove(root, item);
 		size--;
-		if (out == null)
+		if (out == null||out.val.compareTo(item)!=0)
 			return false;
 		else
 			return true;
